@@ -1,12 +1,9 @@
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
 Style/Documentation:
   Enabled: false
 
 Metrics/MethodLength:
   Enabled: true
-  Max: 12
+  Max: 13
 
 Metrics/CyclomaticComplexity:
   Enabled: true
@@ -15,7 +12,3 @@ Metrics/CyclomaticComplexity:
 Metrics/PerceivedComplexity:
   Enabled: true
   Max: 9
-
-Layout/LineLength:
-  Enabled: true
-  Max: 198
