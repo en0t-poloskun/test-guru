@@ -12,3 +12,8 @@ Metrics/CyclomaticComplexity:
 Metrics/PerceivedComplexity:
   Enabled: true
   Max: 9
+
+Metrics/BlockLength:
+  Enabled: true
+  Exclude: 
+    - db/schema.rb
