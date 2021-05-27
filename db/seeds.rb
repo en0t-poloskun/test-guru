@@ -35,3 +35,6 @@ Answer.create([{ body: 'Wrong answer for ruby question 1', question_id: 1 },
                { body: 'Correct answer for birds question 1', correct: true, question_id: 7 },
                { body: 'Wrong answer for birds question 2', question_id: 8 },
                { body: 'Correct answer for birds question 2', correct: true, question_id: 8 }])
+Result.create([{ correct_answers: 2, incorrect_answers: 0, user_id: 1, test_id: 1 },
+               { correct_answers: 1, incorrect_answers: 1, user_id: 1, test_id: 3 },
+               { correct_answers: 1, incorrect_answers: 0, finished: false, user_id: 1, test_id: 4 }])
