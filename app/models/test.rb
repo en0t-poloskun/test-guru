@@ -2,7 +2,7 @@
 
 class Test < ApplicationRecord
   def self.find_tests_names(category)
-    category = Category.find_by(name: category)
-    Test.where(category_id: category.id).order(name: :desc).pluck(:name)
+    Test.joins('JOIN categories ON tests.category_id = categories.id').where('categories.name': category)
+        .order(name: :desc).pluck(:name)
   end
 end
