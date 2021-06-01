@@ -42,4 +42,5 @@ Answer.create!([{ body: 'Wrong answer for ruby question 1', question_id: questio
 Result.create!([{ correct_answers: 2, incorrect_answers: 0, user_id: users[0].id, test_id: tests[0].id },
                 { correct_answers: 1, incorrect_answers: 1, user_id: users[0].id, test_id: tests[2].id },
                 { correct_answers: 1, incorrect_answers: 0, finished: false, user_id: users[0].id,
-                  test_id: tests[3].id }])
+                  test_id: tests[3].id },
+                { correct_answers: 2, incorrect_answers: 0, user_id: users[1].id, test_id: tests[3].id }])

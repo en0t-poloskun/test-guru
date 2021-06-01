@@ -2,7 +2,6 @@
 
 class User < ApplicationRecord
   def find_tests(level)
-    started_tests = Result.where(user_id: id).pluck(:test_id)
-    Test.where(level: level, id: started_tests)
+    Test.joins('JOIN results ON tests.id = results.test_id').where('results.user_id': id, level: level)
   end
 end
