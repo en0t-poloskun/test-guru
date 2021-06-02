@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Test < ApplicationRecord
+  belongs_to :category
+  has_many :questions
+
   def self.find_tests_names(category)
     joins('JOIN categories ON tests.category_id = categories.id')
       .where(categories: { name: category })
