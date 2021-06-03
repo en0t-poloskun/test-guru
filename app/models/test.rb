@@ -5,6 +5,7 @@ class Test < ApplicationRecord
   has_many :questions
   has_many :results
   has_many :users, through: :results
+  belongs_to :author, class_name: 'User'
 
   def self.find_tests_names(category)
     joins('JOIN categories ON tests.category_id = categories.id')
