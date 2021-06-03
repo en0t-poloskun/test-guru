@@ -39,16 +39,13 @@ ActiveRecord::Schema.define(version: 20_210_527_181_901) do
     t.index ['test_id'], name: 'index_questions_on_test_id'
   end
 
-  create_table 'results', force: :cascade do |t|
+  create_table 'results', id: false, force: :cascade do |t|
+    t.bigint 'user_id', null: false
+    t.bigint 'test_id', null: false
     t.integer 'correct_answers', null: false
     t.integer 'incorrect_answers', null: false
     t.boolean 'finished', default: true
-    t.bigint 'user_id', null: false
-    t.bigint 'test_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['test_id'], name: 'index_results_on_test_id'
-    t.index ['user_id'], name: 'index_results_on_user_id'
+    t.index %w[user_id test_id], name: 'index_results_on_user_id_and_test_id', unique: true
   end
 
   create_table 'tests', force: :cascade do |t|
@@ -74,8 +71,6 @@ ActiveRecord::Schema.define(version: 20_210_527_181_901) do
 
   add_foreign_key 'answers', 'questions'
   add_foreign_key 'questions', 'tests'
-  add_foreign_key 'results', 'tests'
-  add_foreign_key 'results', 'users'
   add_foreign_key 'tests', 'categories'
   add_foreign_key 'tests', 'users', column: 'author_id'
 end
