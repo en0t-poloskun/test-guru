@@ -8,6 +8,10 @@ class Test < ApplicationRecord
   has_many :results
   has_many :users, through: :results, dependent: :destroy
 
+  validates :name, presence: true
+  validates :level, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :name, uniqueness: { scope: :level }
+
   scope :find_level, ->(level) { where(level: level) }
   scope :easy, -> { find_level(0..1) }
   scope :medium, -> { find_level(2..4) }

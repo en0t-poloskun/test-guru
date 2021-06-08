@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class Category < ApplicationRecord
+  default_scope { order(:name) }
+
   has_many :tests, dependent: :nullify
 
-  default_scope { order(:name) }
+  validates :name, presence: true
 end
