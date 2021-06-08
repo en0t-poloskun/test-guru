@@ -12,9 +12,9 @@ users = User.create!([{ first_name: 'Ivan', last_name: 'Ivanov', login: 'ivan4ik
                       { first_name: 'Anna', last_name: 'Petrova', login: 'ann98', password: 'pass2', role: 'admin' }])
 categories = Category.create!([{ name: 'programming' }, { name: 'animals' }])
 tests = Test.create!([{ name: 'Ruby', category: categories[0], author: users[1] },
-                      { name: 'Dog breeds', category: categories[1], author: users[1] },
+                      { name: 'Dog breeds', level: 4, category: categories[1], author: users[1] },
                       { name: 'Python', level: 1, category: categories[0], author: users[1] },
-                      { name: 'Birds', level: 1, category: categories[1], author: users[1] }])
+                      { name: 'Birds', level: 6, category: categories[1], author: users[1] }])
 questions = Question.create!([{ body: 'Ruby question 1', test: tests[0] },
                               { body: 'Ruby question 2', test: tests[0] },
                               { body: 'Dog breeds question 1', test: tests[1] },
