@@ -17,30 +17,63 @@ tests = Test.create!([{ name: 'Ruby', category: categories[0], author: users[1] 
                       { name: 'Dog breeds', level: 4, category: categories[1], author: users[1] },
                       { name: 'Python', level: 1, category: categories[0], author: users[1] },
                       { name: 'Birds', level: 6, category: categories[1], author: users[1] }])
-questions = Question.create!([{ body: 'Ruby question 1', test: tests[0] },
-                              { body: 'Ruby question 2', test: tests[0] },
-                              { body: 'Dog breeds question 1', test: tests[1] },
-                              { body: 'Dog breeds question 2', test: tests[1] },
-                              { body: 'Python question 1', test: tests[2] },
-                              { body: 'Python question 2', test: tests[2] },
-                              { body: 'Birds question 1', test: tests[3] },
-                              { body: 'Birds question 2', test: tests[3] }])
-Answer.create!([{ body: 'Wrong answer for ruby question 1', question: questions[0] },
-                { body: 'Correct answer for ruby question 1', correct: true, question: questions[0] },
-                { body: 'Wrong answer for ruby question 2', question: questions[1] },
-                { body: 'Correct answer for ruby question 2', correct: true, question: questions[1] },
-                { body: 'Wrong answer for dog breeds question 1', question: questions[2] },
-                { body: 'Correct answer for dog breeds question 1', correct: true, question: questions[2] },
-                { body: 'Wrong answer for dog breeds question 2', question: questions[3] },
-                { body: 'Correct answer for dog breeds question 2', correct: true, question: questions[3] },
-                { body: 'Wrong answer for python question 1', question: questions[4] },
-                { body: 'Correct answer for python question 1', correct: true, question: questions[4] },
-                { body: 'Wrong answer for python question 2', question: questions[5] },
-                { body: 'Correct answer for python question 2', correct: true, question: questions[5] },
-                { body: 'Wrong answer for birds question 1', question: questions[6] },
-                { body: 'Correct answer for birds question 1', correct: true, question: questions[6] },
-                { body: 'Wrong answer for birds question 2', question: questions[7] },
-                { body: 'Correct answer for birds question 2', correct: true, question: questions[7] }])
+
+question = Question.new(body: 'Ruby question 1', test: tests[0])
+answer1 = Answer.new(body: 'Wrong answer for ruby question 1')
+answer2 = Answer.new(body: 'Correct answer for ruby question 1')
+question.answers << answer1
+question.answers << answer2
+question.save!
+
+question = Question.new(body: 'Ruby question 2', test: tests[0])
+answer1 = Answer.new(body: 'Wrong answer for ruby question 2')
+answer2 = Answer.new(body: 'Correct answer for ruby question 2')
+question.answers << answer1
+question.answers << answer2
+question.save!
+
+question = Question.new(body: 'Dog breeds question 1', test: tests[1])
+answer1 = Answer.new(body: 'Wrong answer for dog breeds question 1')
+answer2 = Answer.new(body: 'Correct answer for dog breeds question 1')
+question.answers << answer1
+question.answers << answer2
+question.save!
+
+question = Question.new(body: 'Dog breeds question 2', test: tests[1])
+answer1 = Answer.new(body: 'Wrong answer for dog breeds question 2')
+answer2 = Answer.new(body: 'Correct answer for dog breeds question 2')
+question.answers << answer1
+question.answers << answer2
+question.save!
+
+question = Question.new(body: 'Python question 1', test: tests[2])
+answer1 = Answer.new(body: 'Wrong answer for python question 1')
+answer2 = Answer.new(body: 'Correct answer for python question 1')
+question.answers << answer1
+question.answers << answer2
+question.save!
+
+question = Question.new(body: 'Python question 2', test: tests[2])
+answer1 = Answer.new(body: 'Wrong answer for python question 2')
+answer2 = Answer.new(body: 'Correct answer for python question 2')
+question.answers << answer1
+question.answers << answer2
+question.save!
+
+question = Question.new(body: 'Birds question 1', test: tests[3])
+answer1 = Answer.new(body: 'Wrong answer for birds question 1')
+answer2 = Answer.new(body: 'Correct answer for birds question 1')
+question.answers << answer1
+question.answers << answer2
+question.save!
+
+question = Question.new(body: 'Birds question 2', test: tests[3])
+answer1 = Answer.new(body: 'Wrong answer for birds question 2')
+answer2 = Answer.new(body: 'Correct answer for birds question 2')
+question.answers << answer1
+question.answers << answer2
+question.save!
+
 Result.create!([{ correct_answers: 2, incorrect_answers: 0, user: users[0], test: tests[0] },
                 { correct_answers: 1, incorrect_answers: 1, user: users[0], test: tests[2] },
                 { correct_answers: 1, incorrect_answers: 0, finished: false, user: users[0], test: tests[3] },
