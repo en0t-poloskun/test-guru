@@ -10,16 +10,20 @@ class Test < ApplicationRecord
 
   validates :name, presence: true
   validates :level, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :name, uniqueness: { scope: :level }
+  validates :name, uniqueness: { scope: :medium }
 
   scope :find_level, ->(level) { where(level: level) }
   scope :easy, -> { find_level(0..1) }
   scope :medium, -> { find_level(2..4) }
   scope :hard, -> { find_level(5..Float::INFINITY) }
-  scope :find_tests_names, lambda { |category|
-                             joins(:category)
-                               .where(categories: { name: category })
-                               .order(name: :desc)
-                               .pluck(:name)
-                           }
+  scope :find_category, lambda { |category|
+                          joins(:category)
+                            .where(categories: { name: category })
+                            .order(name: :desc)
+                        }
+
+  def self.find_tests_names(category)
+    find_category(category)
+      .pluck(:name)
+  end
 end
