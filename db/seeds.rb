@@ -18,61 +18,24 @@ tests = Test.create!([{ name: 'Ruby', category: categories[0], author: users[1] 
                       { name: 'Python', level: 1, category: categories[0], author: users[1] },
                       { name: 'Birds', level: 6, category: categories[1], author: users[1] }])
 
-question = Question.new(body: 'Ruby question 1', test: tests[0])
-answer1 = Answer.new(body: 'Wrong answer for ruby question 1')
-answer2 = Answer.new(body: 'Correct answer for ruby question 1')
-question.answers << answer1
-question.answers << answer2
-question.save!
+question_bodies = ['Ruby question 1', 'Ruby question 2', 'Dog breeds question 1', 'Dog breeds question 2',
+                   'Python question 1', 'Python question 2', 'Birds question 1', 'Birds question 2']
 
-question = Question.new(body: 'Ruby question 2', test: tests[0])
-answer1 = Answer.new(body: 'Wrong answer for ruby question 2')
-answer2 = Answer.new(body: 'Correct answer for ruby question 2')
-question.answers << answer1
-question.answers << answer2
-question.save!
+wrong_bodies = ['Wrong answer for ruby question 1', 'Wrong answer for ruby question 2',
+                'Wrong answer for dog breeds question 1', 'Wrong answer for dog breeds question 2',
+                'Wrong answer for python question 1', 'Wrong answer for python question 2',
+                'Wrong answer for birds question 1', 'Wrong answer for birds question 2']
 
-question = Question.new(body: 'Dog breeds question 1', test: tests[1])
-answer1 = Answer.new(body: 'Wrong answer for dog breeds question 1')
-answer2 = Answer.new(body: 'Correct answer for dog breeds question 1')
-question.answers << answer1
-question.answers << answer2
-question.save!
+correct_bodies = ['Correct answer for ruby question 1', 'Correct answer for ruby question 2',
+                  'Correct answer for dog breeds question 1', 'Correct answer for dog breeds question 2',
+                  'Correct answer for python question 1', 'Correct answer for python question 2',
+                  'Correct answer for birds question 1', 'Correct answer for birds question 2']
 
-question = Question.new(body: 'Dog breeds question 2', test: tests[1])
-answer1 = Answer.new(body: 'Wrong answer for dog breeds question 2')
-answer2 = Answer.new(body: 'Correct answer for dog breeds question 2')
-question.answers << answer1
-question.answers << answer2
-question.save!
-
-question = Question.new(body: 'Python question 1', test: tests[2])
-answer1 = Answer.new(body: 'Wrong answer for python question 1')
-answer2 = Answer.new(body: 'Correct answer for python question 1')
-question.answers << answer1
-question.answers << answer2
-question.save!
-
-question = Question.new(body: 'Python question 2', test: tests[2])
-answer1 = Answer.new(body: 'Wrong answer for python question 2')
-answer2 = Answer.new(body: 'Correct answer for python question 2')
-question.answers << answer1
-question.answers << answer2
-question.save!
-
-question = Question.new(body: 'Birds question 1', test: tests[3])
-answer1 = Answer.new(body: 'Wrong answer for birds question 1')
-answer2 = Answer.new(body: 'Correct answer for birds question 1')
-question.answers << answer1
-question.answers << answer2
-question.save!
-
-question = Question.new(body: 'Birds question 2', test: tests[3])
-answer1 = Answer.new(body: 'Wrong answer for birds question 2')
-answer2 = Answer.new(body: 'Correct answer for birds question 2')
-question.answers << answer1
-question.answers << answer2
-question.save!
+(0..question_bodies.size - 1).each do |i|
+  question = Question.new(body: question_bodies[i], test: tests[i / 2])
+  question.answers << Answer.new(body: wrong_bodies[i]) << Answer.new(body: correct_bodies[i], correct: true)
+  question.save!
+end
 
 Result.create!([{ correct_answers: 2, incorrect_answers: 0, user: users[0], test: tests[0] },
                 { correct_answers: 1, incorrect_answers: 1, user: users[0], test: tests[2] },
