@@ -7,11 +7,11 @@ class Question < ApplicationRecord
 
   validates :body, presence: true
 
-  validate :validate_answers_number
+  validate :validate_empty_question
 
   private
 
-  def validate_answers_number
-    errors.add(:answers) if answers.empty? || (answers.size > 4)
+  def validate_empty_question
+    errors.add(:answers) if answers.empty?
   end
 end
