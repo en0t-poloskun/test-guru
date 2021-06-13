@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20_210_527_181_901) do
     t.datetime 'updated_at', precision: 6, null: false
     t.index ['author_id'], name: 'index_tests_on_author_id'
     t.index ['category_id'], name: 'index_tests_on_category_id'
+    t.index %w[name level], name: 'index_tests_on_name_and_level', unique: true
   end
 
   create_table 'users', force: :cascade do |t|
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 20_210_527_181_901) do
     t.string 'last_name', null: false
     t.string 'login', null: false
     t.string 'password', null: false
+    t.string 'email', null: false
     t.string 'role', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false

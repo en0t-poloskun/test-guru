@@ -5,8 +5,10 @@ class User < ApplicationRecord
   has_many :tests, through: :results, dependent: :destroy
   has_many :created_tests, foreign_key: 'author_id', class_name: 'Test', dependent: :destroy
 
+  validates :email, presence: true
+
   def find_tests(level)
     tests
-      .where(level: level)
+      .find_level(level)
   end
 end

@@ -8,37 +8,35 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)s
 
-users = User.create!([{ first_name: 'Ivan', last_name: 'Ivanov', login: 'ivan4ik', password: 'pass1', role: 'user' },
-                      { first_name: 'Anna', last_name: 'Petrova', login: 'ann98', password: 'pass2', role: 'admin' }])
+users = User.create!([{ first_name: 'Ivan', last_name: 'Ivanov', login: 'ivan4ik', password: 'pass1',
+                        email: 'ivan4ik@gmail.com', role: 'user' },
+                      { first_name: 'Anna', last_name: 'Petrova', login: 'ann98', password: 'pass2',
+                        email: 'ann98@gmail.com', role: 'admin' }])
 categories = Category.create!([{ name: 'programming' }, { name: 'animals' }])
 tests = Test.create!([{ name: 'Ruby', category: categories[0], author: users[1] },
-                      { name: 'Dog breeds', category: categories[1], author: users[1] },
+                      { name: 'Dog breeds', level: 4, category: categories[1], author: users[1] },
                       { name: 'Python', level: 1, category: categories[0], author: users[1] },
-                      { name: 'Birds', level: 1, category: categories[1], author: users[1] }])
-questions = Question.create!([{ body: 'Ruby question 1', test: tests[0] },
-                              { body: 'Ruby question 2', test: tests[0] },
-                              { body: 'Dog breeds question 1', test: tests[1] },
-                              { body: 'Dog breeds question 2', test: tests[1] },
-                              { body: 'Python question 1', test: tests[2] },
-                              { body: 'Python question 2', test: tests[2] },
-                              { body: 'Birds question 1', test: tests[3] },
-                              { body: 'Birds question 2', test: tests[3] }])
-Answer.create!([{ body: 'Wrong answer for ruby question 1', question: questions[0] },
-                { body: 'Correct answer for ruby question 1', correct: true, question: questions[0] },
-                { body: 'Wrong answer for ruby question 2', question: questions[1] },
-                { body: 'Correct answer for ruby question 2', correct: true, question: questions[1] },
-                { body: 'Wrong answer for dog breeds question 1', question: questions[2] },
-                { body: 'Correct answer for dog breeds question 1', correct: true, question: questions[2] },
-                { body: 'Wrong answer for dog breeds question 2', question: questions[3] },
-                { body: 'Correct answer for dog breeds question 2', correct: true, question: questions[3] },
-                { body: 'Wrong answer for python question 1', question: questions[4] },
-                { body: 'Correct answer for python question 1', correct: true, question: questions[4] },
-                { body: 'Wrong answer for python question 2', question: questions[5] },
-                { body: 'Correct answer for python question 2', correct: true, question: questions[5] },
-                { body: 'Wrong answer for birds question 1', question: questions[6] },
-                { body: 'Correct answer for birds question 1', correct: true, question: questions[6] },
-                { body: 'Wrong answer for birds question 2', question: questions[7] },
-                { body: 'Correct answer for birds question 2', correct: true, question: questions[7] }])
+                      { name: 'Birds', level: 6, category: categories[1], author: users[1] }])
+
+question_bodies = ['Ruby question 1', 'Ruby question 2', 'Dog breeds question 1', 'Dog breeds question 2',
+                   'Python question 1', 'Python question 2', 'Birds question 1', 'Birds question 2']
+
+wrong_bodies = ['Wrong answer for ruby question 1', 'Wrong answer for ruby question 2',
+                'Wrong answer for dog breeds question 1', 'Wrong answer for dog breeds question 2',
+                'Wrong answer for python question 1', 'Wrong answer for python question 2',
+                'Wrong answer for birds question 1', 'Wrong answer for birds question 2']
+
+correct_bodies = ['Correct answer for ruby question 1', 'Correct answer for ruby question 2',
+                  'Correct answer for dog breeds question 1', 'Correct answer for dog breeds question 2',
+                  'Correct answer for python question 1', 'Correct answer for python question 2',
+                  'Correct answer for birds question 1', 'Correct answer for birds question 2']
+
+(0..question_bodies.size - 1).each do |i|
+  question = Question.new(body: question_bodies[i], test: tests[i / 2])
+  question.answers << Answer.new(body: wrong_bodies[i]) << Answer.new(body: correct_bodies[i], correct: true)
+  question.save!
+end
+
 Result.create!([{ correct_answers: 2, incorrect_answers: 0, user: users[0], test: tests[0] },
                 { correct_answers: 1, incorrect_answers: 1, user: users[0], test: tests[2] },
                 { correct_answers: 1, incorrect_answers: 0, finished: false, user: users[0], test: tests[3] },
