@@ -3,6 +3,7 @@
 class QuestionsController < ApplicationController
   before_action :find_test, only: %i[index]
   skip_before_action :verify_authenticity_token, only: %i[destroy]
+  rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_record_not_found
 
   def index
     render plain: @test.questions.pluck(:body)
@@ -31,5 +32,9 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit(:test_id, :body)
+  end
+
+  def rescue_with_record_not_found(exception)
+    render plain: exception.to_s
   end
 end
