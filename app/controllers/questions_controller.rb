@@ -11,9 +11,20 @@ class QuestionsController < ApplicationController
     render plain: Question.find(params[:id]).body
   end
 
+  def new; end
+
+  def create
+    question = Question.create!(question_params)
+    render plain: question.inspect
+  end
+
   private
 
   def find_test
     @test = Test.find(params[:test_id])
+  end
+
+  def question_params
+    params.require(:question).permit(:test_id, :body)
   end
 end
