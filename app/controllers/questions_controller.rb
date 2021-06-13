@@ -2,6 +2,7 @@
 
 class QuestionsController < ApplicationController
   before_action :find_test, only: %i[index]
+  skip_before_action :verify_authenticity_token, only: %i[destroy]
 
   def index
     render plain: @test.questions.pluck(:body)
@@ -16,6 +17,10 @@ class QuestionsController < ApplicationController
   def create
     question = Question.create!(question_params)
     render plain: question.inspect
+  end
+
+  def destroy
+    Question.find(params[:id]).destroy!
   end
 
   private
