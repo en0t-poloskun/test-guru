@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
-  before_action :find_test, only: %i[index]
+  before_action :find_test, only: %i[index create]
   before_action :find_question, only: %i[show destroy]
   skip_before_action :verify_authenticity_token, only: %i[destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_record_not_found
@@ -17,8 +17,12 @@ class QuestionsController < ApplicationController
   def new; end
 
   def create
-    question = Question.create!(question_params)
-    render plain: question.inspect
+    @question = @test.questions.build(question_params)
+    if @question.save
+      redirect_to @question
+    else
+      render :new
+    end
   end
 
   def destroy
