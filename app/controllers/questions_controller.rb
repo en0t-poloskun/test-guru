@@ -26,7 +26,9 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
+    @test = @question.test
     @question.destroy!
+    redirect_to test_questions_url(@test)
   end
 
   private
