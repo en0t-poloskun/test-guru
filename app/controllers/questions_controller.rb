@@ -9,9 +9,7 @@ class QuestionsController < ApplicationController
     redirect_to @test
   end
 
-  def show
-    render plain: @question.body
-  end
+  def show; end
 
   def new; end
 
