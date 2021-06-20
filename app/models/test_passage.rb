@@ -18,6 +18,10 @@ class TestPassage < ApplicationRecord
     save!
   end
 
+  def result
+    correct_questions * 100 / test.questions.count
+  end
+
   private
 
   def before_validation_set_first_question

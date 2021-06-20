@@ -8,8 +8,8 @@
   <%= form.collection_check_boxes :answer_ids, @test_passage.current_question.answers, :id, :body, include_hidden:
   false do |b| %>
     <br>
-      <%= b.check_box id: "answer_ids_#{b.object.id}", :style => "float:left;"%> 
-      <%= b.label :style => "float:left;"%>
+      <%= b.check_box id: "answer_ids_#{b.object.id}" %> 
+      <%= b.label %>
     <br>
   <% end %>
 
