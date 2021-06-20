@@ -1,6 +1,10 @@
 <h1>Pass the <%= @test_passage.test.name %> Test</h1>
 
 <b>
+  Question: <%= @test_passage.question_number %>/<%= @test_passage.test.questions.size %>
+</b><br>
+
+<b>
   <%= @test_passage.current_question.body %>
 </b>
 

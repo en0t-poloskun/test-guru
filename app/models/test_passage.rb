@@ -18,8 +18,12 @@ class TestPassage < ApplicationRecord
     save!
   end
 
+  def question_number
+    test.questions.order(:id).find_index(current_question) + 1
+  end
+
   def result
-    correct_questions * 100 / test.questions.count
+    correct_questions * 100 / test.questions.size
   end
 
   private

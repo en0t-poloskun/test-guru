@@ -9,6 +9,6 @@ module TestPassagesHelper
       message = 'Test passed!'
       color = 'green'
     end
-    "<p> #{message} Your result: <font color=\"#{color}\">#{result}%</font> </p>".html_safe
+    "<b> #{message} Your result: <font color=\"#{color}\">#{result}%</font> </b>".html_safe
   end
 end
