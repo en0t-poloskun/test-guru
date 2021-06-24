@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20_210_527_181_901) do
     t.string 'login', null: false
     t.string 'password_digest', null: false
     t.string 'email', null: false
-    t.string 'role', null: false
+    t.string 'role', default: 'user'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
   end

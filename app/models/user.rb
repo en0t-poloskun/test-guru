@@ -6,6 +6,11 @@ class User < ApplicationRecord
   has_many :created_tests, foreign_key: 'author_id', class_name: 'Test', dependent: :destroy
 
   validates :email, presence: true
+  validates :login, presence: true
+  validates :firstname, presence: true
+  validates :lastname, presence: true
+
+  has_secure_password
 
   def find_tests(level)
     tests
