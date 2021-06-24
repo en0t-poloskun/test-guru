@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 20_210_527_181_901) do
     t.string 'role', default: 'user'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+    t.index ['email'], name: 'index_users_on_email', unique: true
+    t.index ['login'], name: 'index_users_on_login', unique: true
   end
 
   add_foreign_key 'answers', 'questions'

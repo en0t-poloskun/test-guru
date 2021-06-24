@@ -5,8 +5,8 @@ class User < ApplicationRecord
   has_many :tests, through: :test_passages, dependent: :destroy
   has_many :created_tests, foreign_key: 'author_id', class_name: 'Test', dependent: :destroy
 
-  validates :email, presence: true
-  validates :login, presence: true
+  validates :email, presence: true, uniqueness: true, format: { with: /\A[^@]+@\w+\.\w+\z/ }
+  validates :login, presence: true, uniqueness: true
   validates :firstname, presence: true
   validates :lastname, presence: true
 
