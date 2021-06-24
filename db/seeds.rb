@@ -9,9 +9,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)s
 require 'bcrypt'
 
-users = User.create!([{ first_name: 'Ivan', last_name: 'Ivanov', login: 'ivan4ik',
+users = User.create!([{ firstname: 'Ivan', lastname: 'Ivanov', login: 'ivan4ik',
                         password_digest: BCrypt::Password.create('pass1'), email: 'ivan4ik@gmail.com', role: 'user' },
-                      { first_name: 'Anna', last_name: 'Petrova', login: 'ann98',
+                      { firstname: 'Anna', lastname: 'Petrova', login: 'ann98',
                         password_digest: BCrypt::Password.create('pass2'), email: 'ann98@gmail.com', role: 'admin' }])
 categories = Category.create!([{ name: 'programming' }, { name: 'animals' }])
 tests = Test.create!([{ name: 'Ruby', category: categories[0], author: users[1] },
