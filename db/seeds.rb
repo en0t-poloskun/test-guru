@@ -36,8 +36,3 @@ correct_bodies = ['Correct answer for ruby question 1', 'Correct answer for ruby
   question.answers << Answer.new(body: wrong_bodies[i]) << Answer.new(body: correct_bodies[i], correct: true)
   question.save!
 end
-
-Result.create!([{ correct_answers: 2, incorrect_answers: 0, user: users[0], test: tests[0] },
-                { correct_answers: 1, incorrect_answers: 1, user: users[0], test: tests[2] },
-                { correct_answers: 1, incorrect_answers: 0, finished: false, user: users[0], test: tests[3] },
-                { correct_answers: 2, incorrect_answers: 0, user: users[1], test: tests[3] }])
