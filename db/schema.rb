@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20_210_627_122_234) do
     t.string 'lastname', null: false
     t.string 'login', null: false
     t.string 'email', default: '', null: false
-    t.string 'role', default: 'user'
+    t.boolean 'admin', default: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.string 'encrypted_password', default: '', null: false
