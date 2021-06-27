@@ -64,14 +64,16 @@ ActiveRecord::Schema.define(version: 20_210_527_181_901) do
   end
 
   create_table 'users', force: :cascade do |t|
-    t.string 'first_name', null: false
-    t.string 'last_name', null: false
+    t.string 'firstname', null: false
+    t.string 'lastname', null: false
     t.string 'login', null: false
-    t.string 'password', null: false
+    t.string 'password_digest', null: false
     t.string 'email', null: false
-    t.string 'role', null: false
+    t.string 'role', default: 'user'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+    t.index ['email'], name: 'index_users_on_email', unique: true
+    t.index ['login'], name: 'index_users_on_login', unique: true
   end
 
   add_foreign_key 'answers', 'questions'

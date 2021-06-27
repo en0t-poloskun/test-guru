@@ -7,11 +7,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)s
+require 'bcrypt'
 
-users = User.create!([{ first_name: 'Ivan', last_name: 'Ivanov', login: 'ivan4ik', password: 'pass1',
-                        email: 'ivan4ik@gmail.com', role: 'user' },
-                      { first_name: 'Anna', last_name: 'Petrova', login: 'ann98', password: 'pass2',
-                        email: 'ann98@gmail.com', role: 'admin' }])
+users = User.create!([{ firstname: 'Ivan', lastname: 'Ivanov', login: 'ivan4ik',
+                        password_digest: BCrypt::Password.create('pass1'), email: 'ivan4ik@gmail.com', role: 'user' },
+                      { firstname: 'Anna', lastname: 'Petrova', login: 'ann98',
+                        password_digest: BCrypt::Password.create('pass2'), email: 'ann98@gmail.com', role: 'admin' }])
 categories = Category.create!([{ name: 'programming' }, { name: 'animals' }])
 tests = Test.create!([{ name: 'Ruby', category: categories[0], author: users[1] },
                       { name: 'Dog breeds', level: 4, category: categories[1], author: users[1] },
