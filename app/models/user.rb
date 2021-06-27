@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  devise :database_authenticatable,
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :trackable,
+         :validatable,
+         :confirmable
+
   has_many :test_passages
   has_many :tests, through: :test_passages, dependent: :destroy
   has_many :created_tests, foreign_key: 'author_id', class_name: 'Test', dependent: :destroy
@@ -9,8 +17,6 @@ class User < ApplicationRecord
   validates :login, presence: true, uniqueness: true
   validates :firstname, presence: true
   validates :lastname, presence: true
-
-  has_secure_password
 
   def find_tests(level)
     tests
