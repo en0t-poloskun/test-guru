@@ -17,8 +17,7 @@ class Admin
     def edit; end
 
     def create
-      @test = Test.new(test_params)
-      @test.author = current_user
+      @test = current_user.created_tests.new(test_params)
       if @test.save
         redirect_to @test
       else
@@ -36,12 +35,7 @@ class Admin
 
     def destroy
       @test.destroy!
-      redirect_to @test
-    end
-
-    def start
-      current_user.tests.push(@test)
-      redirect_to current_user.test_passage(@test)
+      redirect_to admin_tests_path
     end
 
     private
