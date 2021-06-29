@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20_210_627_122_234) do
     t.string 'lastname', null: false
     t.string 'login', null: false
     t.string 'email', default: '', null: false
-    t.boolean 'admin', default: false
+    t.string 'type', default: 'User', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.string 'encrypted_password', default: '', null: false
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20_210_627_122_234) do
     t.index ['email'], name: 'index_users_on_email', unique: true
     t.index ['login'], name: 'index_users_on_login', unique: true
     t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+    t.index ['type'], name: 'index_users_on_type'
   end
 
   add_foreign_key 'answers', 'questions'
