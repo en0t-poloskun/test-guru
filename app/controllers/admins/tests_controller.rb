@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Admin
-  class TestsController < Admin::BaseController
+module Admins
+  class TestsController < Admins::BaseController
     before_action :find_test, only: %i[show edit update destroy start]
 
     def index
@@ -35,7 +35,7 @@ class Admin
 
     def destroy
       @test.destroy!
-      redirect_to admin_tests_path
+      redirect_to admins_tests_path
     end
 
     private

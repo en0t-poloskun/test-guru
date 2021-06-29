@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Admin
-  class QuestionsController < Admin::BaseController
+module Admins
+  class QuestionsController < Admins::BaseController
     before_action :find_test, only: %i[create new]
     before_action :find_question, only: %i[show destroy edit update]
     rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_record_not_found

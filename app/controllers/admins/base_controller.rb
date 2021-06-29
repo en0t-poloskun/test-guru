@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin
+module Admins
   class BaseController < ApplicationController
     layout 'admin'
 

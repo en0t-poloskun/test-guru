@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
-  scope module: 'admin' do
+  scope module: 'admins' do
     resources :tests, except: :index do
       resources :questions, shallow: true, except: :index do
         resources :answers, shallow: true, except: :index
@@ -26,5 +26,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'admin/tests', to: 'admin/tests#index'
+  get 'admins/tests', to: 'admins/tests#index'
 end
