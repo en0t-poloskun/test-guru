@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Admin
+class Admin
   class AnswersController < Admin::BaseController
     before_action :set_answer, only: %i[show edit update destroy]
     before_action :find_question, only: %i[new create]
