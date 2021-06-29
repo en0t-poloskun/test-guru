@@ -9,7 +9,7 @@ module ApplicationHelper
     link_to title, "https://github.com/#{author}/#{repo}", target: '_blank', rel: 'nofollow'
   end
 
-  def flash_message(key, message)
-    content_tag :p, message, class: "flash #{key}"
+  def flash_message(key)
+    content_tag :p, flash[key], class: "flash #{key}"
   end
 end
