@@ -12,7 +12,8 @@ class TestPassagesController < ApplicationController
     result = GistQuestionService.new(@test_passage.current_question).call
 
     flash_options = if result
-                      { notice: 'Gist was successfully created!' }
+                      { notice: "Gist was successfully created!
+                      #{view_context.link_to('View', result[:html_url], target: '_blank', rel: 'nofollow')}" }
                     else
                       { notice: 'An error occurred while saving gist' }
                     end

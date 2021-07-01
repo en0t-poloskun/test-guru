@@ -10,6 +10,6 @@ module ApplicationHelper
   end
 
   def flash_message(key)
-    content_tag :p, flash[key], class: "flash #{key}"
+    content_tag :p, sanitize(flash[key]), class: "flash #{key}"
   end
 end
