@@ -4,6 +4,8 @@ Style/Documentation:
 Metrics/MethodLength:
   Enabled: true
   Max: 13
+  Exclude: 
+    - db/migrate/20210627122234_add_devise_to_users.rb
 
 Metrics/CyclomaticComplexity:
   Enabled: true
@@ -17,3 +19,9 @@ Metrics/BlockLength:
   Enabled: true
   Exclude: 
     - db/schema.rb
+    - config/environments/development.rb
+
+Metrics/AbcSize:
+  Enabled: true
+  Exclude: 
+    - db/migrate/20210627122234_add_devise_to_users.rb

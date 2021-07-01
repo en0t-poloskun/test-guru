@@ -1,23 +1,17 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  helper_method :current_user,
-                :logged_in?
+  protect_from_forgery with: :exception
+
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
 
-  def authenticate_user!
-    return if current_user
-
-    cookies[:request] = request.url
-    redirect_to login_path, alert: 'Are you a Guru? Verify your Email and Password please'
+  def after_sign_in_path_for(current_user)
+    current_user.is_a?(Admin) ? admins_tests_path : root_path
   end
 
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
-  end
-
-  def logged_in?
-    current_user.present?
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:firstname, :lastname, :login, :email, :password) }
   end
 end

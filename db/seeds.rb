@@ -7,17 +7,23 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)s
-require 'bcrypt'
 
-users = User.create!([{ firstname: 'Ivan', lastname: 'Ivanov', login: 'ivan4ik',
-                        password_digest: BCrypt::Password.create('pass1'), email: 'ivan4ik@gmail.com', role: 'user' },
-                      { firstname: 'Anna', lastname: 'Petrova', login: 'ann98',
-                        password_digest: BCrypt::Password.create('pass2'), email: 'ann98@gmail.com', role: 'admin' }])
+admin = Admin.new(firstname: 'Anna', lastname: 'Petrova', login: 'ann98', password: 'password2',
+                  email: 'ann98@gmail.com')
+admin.skip_confirmation!
+admin.save!
+
+user = User.new(firstname: 'Ivan', lastname: 'Ivanov', login: 'ivan4ik', password: 'password1',
+                email: 'ivan4ik@gmail.com')
+user.skip_confirmation!
+user.save!
+
 categories = Category.create!([{ name: 'programming' }, { name: 'animals' }])
-tests = Test.create!([{ name: 'Ruby', category: categories[0], author: users[1] },
-                      { name: 'Dog breeds', level: 4, category: categories[1], author: users[1] },
-                      { name: 'Python', level: 1, category: categories[0], author: users[1] },
-                      { name: 'Birds', level: 6, category: categories[1], author: users[1] }])
+
+tests = Test.create!([{ name: 'Ruby', category: categories[0], author: admin },
+                      { name: 'Dog breeds', level: 4, category: categories[1], author: admin },
+                      { name: 'Python', level: 1, category: categories[0], author: admin },
+                      { name: 'Birds', level: 6, category: categories[1], author: admin }])
 
 question_bodies = ['Ruby question 1', 'Ruby question 2', 'Dog breeds question 1', 'Dog breeds question 2',
                    'Python question 1', 'Python question 2', 'Birds question 1', 'Birds question 2']

@@ -1,0 +1,6 @@
+<h1><%= link_to 'TestGuru | Admin Panel', admins_tests_path %></h1>
+
+<p class="nav">
+  Welcome, <b><%= current_user.login %></b> Guru! |
+  <%= link_to 'Log out', destroy_user_session_path, method: :delete %> 
+</p>
