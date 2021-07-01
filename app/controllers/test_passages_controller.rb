@@ -12,6 +12,7 @@ class TestPassagesController < ApplicationController
     result = GistQuestionService.new(@test_passage.current_question).call
 
     flash_options = if result
+                      Gist.create!(question: @test_passage.current_question, url: result[:html_url], user: current_user)
                       { notice: "Gist was successfully created!
                       #{view_context.link_to('View', result[:html_url], target: '_blank', rel: 'nofollow')}" }
                     else

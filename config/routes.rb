@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admins do
+    resources :gists, only: :index
+  end
+
   scope module: 'admins' do
     resources :tests, except: :index do
       resources :questions, shallow: true, except: :index do
