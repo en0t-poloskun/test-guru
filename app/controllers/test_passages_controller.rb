@@ -11,7 +11,7 @@ class TestPassagesController < ApplicationController
   def gist
     result = GistQuestionService.new(@test_passage.current_question).call
 
-    flash_options = if result.success?
+    flash_options = if result
                       { notice: 'Gist was successfully created!' }
                     else
                       { notice: 'An error occurred while saving gist' }
