@@ -30,4 +30,12 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  test_passages:
+    gist:
+      sucess: 'Gist was successfully created! %{link}'
+      link_text: 'View'
+      failure: 'An error occurred while saving gist'
+
+  gist_question_service:
+    gist_params:
+      description: 'A question about %{test_name} from TestGuru'

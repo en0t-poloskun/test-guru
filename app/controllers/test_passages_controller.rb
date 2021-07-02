@@ -13,10 +13,10 @@ class TestPassagesController < ApplicationController
 
     flash_options = if result
                       Gist.create!(question: @test_passage.current_question, url: result[:html_url], user: current_user)
-                      { notice: "Gist was successfully created!
-                      #{view_context.link_to('View', result[:html_url], target: '_blank', rel: 'nofollow')}" }
+                      { notice: t('.success',
+                                  link: view_context.link_to(t('.link_text'), result[:html_url])).html_safe }
                     else
-                      { notice: 'An error occurred while saving gist' }
+                      { notice: t('.failure') }
                     end
 
     redirect_to @test_passage, flash_options

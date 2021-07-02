@@ -1,2 +1,10 @@
 ru:
-  hello: "Привет, мир"
+  test_passages:
+    gist:
+      success: 'Gist успешно сохранен! %{link}'
+      link_text: 'Посмотреть'
+      failure: 'Во время сохранения gist произошла ошибка'
+
+  gist_question_service:
+    gist_params:
+      description: 'Вопрос из теста %{test_name} с сайта TestGuru'
