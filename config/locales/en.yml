@@ -30,6 +30,19 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  admins:
+    access_failure: 'You are not authorized to view this page.'
+    questions:
+      new:
+        header: "Create New %{test} Question"
+      edit:
+        header: "Edit %{test} Question"
+
+  users:
+      sessions:
+        create:
+          success: 'Hello, %{firstname} %{lastname}!'
+
   test_passages:
     gist:
       sucess: 'Gist was successfully created! %{link}'
