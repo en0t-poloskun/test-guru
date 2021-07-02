@@ -1,13 +1,13 @@
-<h1>All gists</h1>
+<h1><%= t('.header') %></h1>
 
 <table>
   <tr>
-    <th>Question</th>
-    <th>Gist URL</th>
-    <th>User</th>
+    <th><%= t('.question') %></th>
+    <th><%= t('.url') %></th>
+    <th><%= t('.user') %></th>
   </tr>
   
   <%= render @gist %>
 </table>
 
-<%= link_to 'Back', admins_tests_path %>
+<%= link_to t('links.back'), admins_tests_path %>

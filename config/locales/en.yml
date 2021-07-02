@@ -37,6 +37,15 @@ en:
         header: "Create New %{test} Question"
       edit:
         header: "Edit %{test} Question"
+    gists:
+      index:
+        header: 'All Gists'
+        question: 'Question'
+        url: 'Gist URL'
+        user: 'User'
+    tests:
+      index:
+        gists: 'View created Gists'
 
   users:
       sessions:
@@ -52,3 +61,6 @@ en:
   gist_question_service:
     gist_params:
       description: 'A question about %{test_name} from TestGuru'
+
+  inks:
+    back: 'Back'
