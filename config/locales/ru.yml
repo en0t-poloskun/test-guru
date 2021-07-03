@@ -21,8 +21,8 @@ ru:
       create:
         success: "Привет, %{firstname} %{lastname}!"
 
-  test_passages:
-    gist:
+  gists:
+    create:
       success: "Gist успешно сохранен! %{link}"
       link_text: "Посмотреть"
       failure: "Во время сохранения gist произошла ошибка"
