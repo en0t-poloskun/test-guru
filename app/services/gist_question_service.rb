@@ -10,7 +10,13 @@ class GistQuestionService
   end
 
   def call
-    @client.create_gist(gist_params)
+    resource = @client.create_gist(gist_params)
+    return unless @client.last_response.status == 201
+
+    Struct.new('GithubResponse', :url)
+    Struct::GithubResponse.new(resource[:html_url])
+  rescue Octokit::Error
+    nil
   end
 
   private

@@ -6,10 +6,11 @@ class GistsController < ApplicationController
   def create
     @test_passage = TestPassage.find(params[:test_passage_id])
 
-    flash_options = if github_url
-                      Gist.create!(question: @test_passage.current_question, url: github_url, user: current_user)
+    flash_options = if github_response && !github_response.url.empty?
+                      Gist.create!(question: @test_passage.current_question, url: github_response.url,
+                                   user: current_user)
                       { notice: t('.success',
-                                  link: view_context.link_to(t('.link_text'), github_url)).html_safe }
+                                  link: view_context.link_to(t('.link_text'), github_response.url)).html_safe }
                     else
                       { alert: t('.failure') }
                     end
@@ -19,7 +20,7 @@ class GistsController < ApplicationController
 
   private
 
-  def github_url
-    GistQuestionService.new(@test_passage.current_question).call[:html_url]
+  def github_response
+    GistQuestionService.new(@test_passage.current_question).call
   end
 end
