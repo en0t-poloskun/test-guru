@@ -1,2 +1,35 @@
 ru:
-  hello: "Привет, мир"
+  admins:
+    access_failure: "У Вас нет прав для просмотра этой страницы."
+    questions:
+      new:
+        header: "Создание вопроса для теста %{test}"
+      edit:
+        header: "Редактирование вопроса для теста %{test}"
+    gists:
+      index:
+        header: 'Все Gist'
+        question: 'Вопрос'
+        url: 'Gist URL'
+        user: 'Пользователь'
+    tests:
+      index:
+        gists: 'Посмотреть созданные Gist'
+
+  users:
+    sessions:
+      create:
+        success: "Привет, %{firstname} %{lastname}!"
+
+  gists:
+    create:
+      success: "Gist успешно сохранен! %{link}"
+      link_text: "Посмотреть"
+      failure: "Во время сохранения gist произошла ошибка"
+
+  gist_question_service:
+    gist_params:
+      description: "Вопрос из теста %{test_name} с сайта TestGuru"
+  
+  links:
+    back: 'Назад'

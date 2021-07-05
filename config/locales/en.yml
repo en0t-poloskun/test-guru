@@ -30,4 +30,37 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  admins:
+    access_failure: 'You are not authorized to view this page.'
+    questions:
+      new:
+        header: "Create New %{test} Question"
+      edit:
+        header: "Edit %{test} Question"
+    gists:
+      index:
+        header: 'All Gists'
+        question: 'Question'
+        url: 'Gist URL'
+        user: 'User'
+    tests:
+      index:
+        gists: 'View created Gists'
+
+  users:
+      sessions:
+        create:
+          success: 'Hello, %{firstname} %{lastname}!'
+
+  gists:
+    create:
+      sucess: 'Gist was successfully created! %{link}'
+      link_text: 'View'
+      failure: 'An error occurred while saving gist'
+
+  gist_question_service:
+    gist_params:
+      description: 'A question about %{test_name} from TestGuru'
+
+  inks:
+    back: 'Back'

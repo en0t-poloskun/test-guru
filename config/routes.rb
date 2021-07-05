@@ -16,6 +16,11 @@ Rails.application.routes.draw do
     member do
       get :result
     end
+    resources :gists, only: :create
+  end
+
+  namespace :admins do
+    resources :gists, only: :index
   end
 
   scope module: 'admins' do
