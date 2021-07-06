@@ -7,7 +7,22 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import SortingTable from 'utilities/sorting_table';
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+document.addEventListener('turbolinks:load', function() {
+  const control = document.querySelector('.sort-by')
+  
+  if (control) { control.addEventListener('click', sortTable) }
+})
+
+let sortTable = () => {
+  const table = document.getElementById("tableTest")
+  if (table) {
+    const sortingTable = new SortingTable(table)
+    sortingTable.sortTable()
+  }
+}
