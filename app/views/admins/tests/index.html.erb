@@ -4,6 +4,8 @@
   <%= link_to 'New test', new_test_path %>
 </p>
 
+<%= render 'shared/errors', resource: @test %>
+
 <table class="table" id="tableTest">
   <tr>
     <th class="sort-by pointer">
@@ -17,7 +19,7 @@
     <th colspan="3">Actions</th>
   </tr>
   
-  <%= render @test %>
+  <%= render @tests %>
 </table><br>
 
 <%= link_to t('.gists'), admins_gists_path %>
