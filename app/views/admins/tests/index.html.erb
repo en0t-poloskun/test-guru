@@ -4,9 +4,13 @@
   <%= link_to 'New test', new_test_path %>
 </p>
 
-<table>
+<table class="table" id="tableTest">
   <tr>
-    <th>Title</th>
+    <th class="sort-by pointer">
+      Title
+      <%= octicon 'arrow-up', class: 'passed hide' %>
+      <%= octicon 'arrow-down', class: 'passed hide' %>
+    </th>
     <th>Level</th>
     <th>Category</th>
     <th>Questions</th>
