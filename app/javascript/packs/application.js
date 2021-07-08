@@ -9,6 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import SortingTable from 'utilities/sorting_table'
 import PasswordMatch from 'utilities/password_match'
+import FormInline from 'utilities/form_inline'
 
 Rails.start()
 Turbolinks.start()
@@ -17,9 +18,24 @@ ActiveStorage.start()
 document.addEventListener('turbolinks:load', function() {
   const sortByColumn = document.querySelector('.sort-by')
   const confirmPassword = document.getElementById("confirmPassword")
-  
+  const editLinks = document.querySelectorAll('.form-inline-link')
+ 
   if (sortByColumn) { sortByColumn.addEventListener('click', sortTable) }
   if (confirmPassword) { confirmPassword.addEventListener('input', passwordMatch) }
+  if (editLinks.length) {
+    for (let link of editLinks) {
+      link.addEventListener('click', formInlineLinkHandler)
+    }
+  }
+
+  const errors = document.querySelector('.resource-errors')
+
+  if (errors && editLinks.length) {
+    const resourceId = errors.dataset.resourceId
+    const event = new Event('click')
+    document.querySelector('.form-inline-link[data-test-id="' + resourceId + '"]').dispatchEvent(event)
+  }
+
 })
 
 let sortTable = () => {
@@ -31,4 +47,15 @@ let passwordMatch = () => {
   const password = document.getElementById("password")
   const confirmPassword = document.getElementById("confirmPassword")
   if (password && confirmPassword) { new PasswordMatch(password, confirmPassword).check() }
+}
+
+let formInlineLinkHandler = (event) => {
+  event.preventDefault()
+
+  const testId = event.target.dataset.testId
+  const link = document.querySelector('.form-inline-link[data-test-id="' + testId + '"]')
+  const testTitle = document.querySelector('.test-name[data-test-id="' + testId + '"]')
+  const formInline = document.querySelector('.form-inline[data-test-id="' + testId + '"]')
+
+  new FormInline(link, testTitle, formInline).handle()
 }
