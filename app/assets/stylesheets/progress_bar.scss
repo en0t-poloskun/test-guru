@@ -1,0 +1,12 @@
+#progress {
+  width: 100%;
+  background-color: #efefef;
+  border-radius: 25px;
+}
+
+#bar {
+  width: 0%;
+  height: 30px;
+  border-radius: 50px 0 0 50px;
+  background-color: #00bfff;
+}

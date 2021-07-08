@@ -4,6 +4,11 @@
   Question: <%= @test_passage.question_number %>/<%= @test_passage.test.questions.size %>
 </b><br>
 
+<div id="progress">
+  <%= content_tag :div, nil, id: 'bar', 
+  data: { question_number: @test_passage.question_number, questions_size: @test_passage.test.questions.size } %>
+</div>
+
 <p>
   <b><%= @test_passage.current_question.body %></b>
 </p>
