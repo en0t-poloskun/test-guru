@@ -10,6 +10,10 @@ module Admins
 
     def show; end
 
+    def new
+      @badge = Badge.new
+    end
+
     private
 
     def set_badge

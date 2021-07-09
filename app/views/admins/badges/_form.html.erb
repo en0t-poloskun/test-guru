@@ -1,0 +1,15 @@
+<%= form_with model: [:admins, @badge], local: true do |form| %>
+  <%= render 'shared/errors', resource: @badge %>
+
+  <p>
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :badge_name %>
+  </p>
+
+  <p>
+    <%= form.label :image, 'Image path: public/badges/' %>
+    <%= form.select :image, Dir.entries("public/badges")[2..-1], prompt: true  %>
+  </p>
+
+<p><%= form.submit %></p>
+<% end %>
