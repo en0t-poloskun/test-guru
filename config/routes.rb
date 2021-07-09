@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :gists, only: :index
+    resources :badges
   end
 
   scope module: 'admins' do

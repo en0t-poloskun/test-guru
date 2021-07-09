@@ -1,0 +1,17 @@
+<h1>All badges</h1>
+
+<p>
+  <%= link_to 'New badge', new_admins_badge_path %>
+</p>
+
+<table class="table">
+  <tr>
+    <th>Title</th>
+    <th>Image</th>
+    <th colspan="3">Actions</th>
+  </tr>
+  
+  <%= render @badges %>
+</table><br>
+
+<%= link_to 'Back', admins_tests_path %>
