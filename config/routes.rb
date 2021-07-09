@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   scope module: 'admins' do
     resources :tests, except: :index do
+      patch :update_inline, on: :member
       resources :questions, shallow: true, except: :index do
         resources :answers, shallow: true, except: :index
       end
