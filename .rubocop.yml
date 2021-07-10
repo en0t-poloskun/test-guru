@@ -27,3 +27,6 @@ Metrics/AbcSize:
   Exclude: 
     - db/migrate/20210627122234_add_devise_to_users.rb
     - app/controllers/gists_controller.rb
+
+Security/Eval:
+  Enabled: false

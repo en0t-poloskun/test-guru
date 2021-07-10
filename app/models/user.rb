@@ -21,6 +21,11 @@ class User < ApplicationRecord
   validates :firstname, presence: true
   validates :lastname, presence: true
 
+  def passed_tests
+    test_passages
+      .passed
+  end
+
   def find_tests(level)
     tests
       .find_level(level)
@@ -28,5 +33,9 @@ class User < ApplicationRecord
 
   def test_passage(test)
     test_passages.order(id: :desc).find_by(test_id: test.id)
+  end
+
+  def first_attempt(test)
+    test_passages.order(:created_at).find_by(test: test)
   end
 end
