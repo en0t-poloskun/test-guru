@@ -1,8 +1,8 @@
 <h1><%= @badge.name %> Badge</h1>
 
-<p>Image path: <%= @badge.image %></p>
+<p>Image path: <%= "public/badges/#{@badge.image}" %></p>
 
-<td><%= image_tag(@badge.image) %></td>
+<td><%= image_tag("/badges/#{@badge.image}") %></td>
 
 <p><%= link_to 'Back', admins_badges_path %> |
 <%= link_to 'Edit', edit_admins_badge_path(@badge) %></p>

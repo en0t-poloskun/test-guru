@@ -8,17 +8,28 @@ class BadgeService
 
   def give
     Badge.all.each do |badge|
-      @current_user.badges.push(badge) if eval(badge.rule)
+      @current_user.badges.push(badge) if rule(badge)
     end
   end
 
   private
 
+  def rule(badge)
+    case badge.method
+    when 'first_attempt'
+      first_attempt(badge.argument)
+    when 'all_tests_from'
+      all_tests_from(badge.argument)
+    when 'all_tests_of'
+      all_tests_of(badge.argument.to_i)
+    end
+  end
+
   def first_attempt(test_id)
     test = Test.find(test_id)
     return unless @test_passage.test == test
 
-    @test_passage.passed? && @test_passage == @current_user.first_attempt(test)
+    @test_passage == @current_user.first_attempt(test)
   end
 
   def all_tests_from(category)

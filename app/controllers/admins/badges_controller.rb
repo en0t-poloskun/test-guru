@@ -14,10 +14,36 @@ module Admins
       @badge = Badge.new
     end
 
+    def create
+      @badge = Badge.new(badge_params)
+
+      if @badge.save
+        redirect_to admins_badge_path(@badge)
+      else
+        render :new
+      end
+    end
+
     private
 
     def set_badge
       @badge = Badge.find(params[:id])
+    end
+
+    def badge_params
+      set_argument
+      params.require(:badge).permit(:name, :image, :method, :argument)
+    end
+
+    def set_argument
+      case params[:badge][:method]
+      when 'first_attempt'
+        params[:badge][:argument] =  params[:badge][:test]
+      when 'all_tests_from'
+        params[:badge][:argument] =  params[:badge][:category]
+      when 'all_tests_of'
+        params[:badge][:argument] =  params[:badge][:level]
+      end
     end
   end
 end
