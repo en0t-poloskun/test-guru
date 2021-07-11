@@ -2,7 +2,7 @@
 
 module Admins
   class BadgesController < Admins::BaseController
-    before_action :set_badge, only: %i[show edit update]
+    before_action :set_badge, only: %i[show edit update destroy]
 
     def index
       @badges = Badge.all
@@ -16,14 +16,6 @@ module Admins
 
     def edit; end
 
-    def update
-      if @badge.update(badge_params)
-        redirect_to admins_badge_path(@badge)
-      else
-        render :edit
-      end
-    end
-
     def create
       @badge = Badge.new(badge_params)
 
@@ -32,6 +24,19 @@ module Admins
       else
         render :new
       end
+    end
+
+    def update
+      if @badge.update(badge_params)
+        redirect_to admins_badge_path(@badge)
+      else
+        render :edit
+      end
+    end
+
+    def destroy
+      @badge.destroy!
+      redirect_to admins_badges_path
     end
 
     private
