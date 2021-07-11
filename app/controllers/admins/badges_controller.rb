@@ -2,7 +2,7 @@
 
 module Admins
   class BadgesController < Admins::BaseController
-    before_action :set_badge, only: %i[show]
+    before_action :set_badge, only: %i[show edit update]
 
     def index
       @badges = Badge.all
@@ -12,6 +12,16 @@ module Admins
 
     def new
       @badge = Badge.new
+    end
+
+    def edit; end
+
+    def update
+      if @badge.update(badge_params)
+        redirect_to admins_badge_path(@badge)
+      else
+        render :edit
+      end
     end
 
     def create
