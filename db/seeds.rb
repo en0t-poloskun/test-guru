@@ -45,7 +45,7 @@ correct_bodies = ['Correct answer for ruby question 1', 'Correct answer for ruby
 end
 
 Badge.create!([{ name: 'Ruby test passed at the first attempt', image: 'ruby.png', method: 'first_attempt',
-                 argument: '1' },
+                 argument: 'Ruby' },
                { name: 'Passed all tests from animals category', image: 'dog.png', method: 'all_tests_from',
                  argument: 'animals' },
                { name: 'Passed all tests of level 1', image: 'confetti.png', method: 'all_tests_of', argument: '1' }])

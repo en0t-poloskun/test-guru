@@ -25,8 +25,8 @@ class BadgeService
     end
   end
 
-  def first_attempt(test_id)
-    test = Test.find(test_id)
+  def first_attempt(test_name)
+    test = Test.find_by(name: test_name)
     return unless @test_passage.test == test
 
     @test_passage == @current_user.first_attempt(test)

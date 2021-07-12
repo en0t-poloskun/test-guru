@@ -14,21 +14,24 @@
   <h2>Rule:</h2>
   <p>
     <%= form.radio_button :method, 'first_attempt'%>
-    <%= form.label :method_first_attempt, "Given after successfully passing the test on the first attempt: "  %>
-    <%= form.collection_select :test, Test.all, :id, :name, prompt: true %>
+    <%= form.label :method_first_attempt, "Given after successfully passing the test on the first attempt: 
+        (Argument = test name)"  %>
   </p>
   <p>
     <%= form.radio_button :method, 'all_tests_from' %>
-    <%= form.label :method_all_tests_from, "Given after successfully passing all tests from category: " %>
-    <%= form.collection_select :category, Category.all, :name, :name, prompt: true %>
+    <%= form.label :method_all_tests_from, "Given after successfully passing all tests from category: 
+        (Argument = category name)" %>
   </p>
   <p>
     <%= form.radio_button :method, 'all_tests_of' %>
-    <%= form.label :method_all_tests_of, "Given after successfully passing all tests of level: " %>
-    <%= form.number_field :level, min: 0 %>
+    <%= form.label :method_all_tests_of, "Given after successfully passing all tests of level: 
+        (Argument = level)" %>
   </p>
 
-  <%= form.hidden_field :argument %>
+  <p>
+    <%= form.label :argument %>
+    <%= form.text_field :argument, id: :badge_argument %>
+  </p>
 
 <p><%= form.submit %></p>
 <% end %>
