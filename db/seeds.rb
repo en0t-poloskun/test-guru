@@ -43,3 +43,9 @@ correct_bodies = ['Correct answer for ruby question 1', 'Correct answer for ruby
   question.answers << Answer.new(body: wrong_bodies[i]) << Answer.new(body: correct_bodies[i], correct: true)
   question.save!
 end
+
+Badge.create!([{ name: 'Ruby test passed at the first attempt', image: 'ruby.png', method: 'first_attempt',
+                 argument: 'Ruby' },
+               { name: 'Passed all tests from animals category', image: 'dog.png', method: 'all_tests_from',
+                 argument: 'animals' },
+               { name: 'Passed all tests of level 1', image: 'confetti.png', method: 'all_tests_of', argument: '1' }])

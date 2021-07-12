@@ -3,7 +3,9 @@
 <p class="nav">
   <% if user_signed_in? %>
     Welcome, <b><%= current_user.login %></b> Guru! |
-    <%= link_to 'Log out', destroy_user_session_path, method: :delete %> 
+    <%= link_to 'Log out', destroy_user_session_path, method: :delete %><br><br>
+    <%= link_to 'View my badges', users_badges_path %><br>
+    <%= link_to 'View all badges', badges_path %>
   <% else %>
     <%= link_to 'Sign up', new_user_registration_path %> |
     <%= link_to 'Log in', new_user_session_path %> 

@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :gists, dependent: :destroy
   has_many :test_passages
   has_many :tests, through: :test_passages, dependent: :destroy
+  has_many :users_badges
+  has_many :badges, through: :users_badges, dependent: :destroy
   has_many :created_tests, foreign_key: 'author_id', class_name: 'Test', dependent: :destroy
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
@@ -19,12 +21,19 @@ class User < ApplicationRecord
   validates :firstname, presence: true
   validates :lastname, presence: true
 
+  def passed_tests
+    test_passages.passed
+  end
+
   def find_tests(level)
-    tests
-      .find_level(level)
+    tests.find_level(level)
   end
 
   def test_passage(test)
     test_passages.order(id: :desc).find_by(test_id: test.id)
+  end
+
+  def first_attempt(test)
+    test_passages.order(:created_at).find_by(test: test)
   end
 end
