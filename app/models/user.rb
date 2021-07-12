@@ -22,13 +22,11 @@ class User < ApplicationRecord
   validates :lastname, presence: true
 
   def passed_tests
-    test_passages
-      .passed
+    test_passages.passed
   end
 
   def find_tests(level)
-    tests
-      .find_level(level)
+    tests.find_level(level)
   end
 
   def test_passage(test)
