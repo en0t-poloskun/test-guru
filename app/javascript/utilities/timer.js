@@ -11,7 +11,7 @@ class Timer {
       
       if (seconds_left <= 0) {
         clearInterval(timer)
-        alert("Время закончилось")
+        window.location.href = window.location.href + "/result"
       } 
       else {
         minutes = Math.trunc(minutes)
