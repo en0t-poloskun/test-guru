@@ -1,4 +1,4 @@
-class Timer {
+export default class Timer {
   constructor(seconds_left) { 
     this.seconds_left = parseInt(seconds_left)
   }
@@ -20,11 +20,10 @@ class Timer {
 
         let strTimer = strMinutes + ':' + strSeconds
         let timerShow = document.getElementById("timer")
-        if (timerShow) { timerShow.innerHTML = strTimer }
+        if (timerShow) timerShow.innerHTML = strTimer
       }
       --seconds_left
     }, 1000)
   } 
 
 }
-export default Timer

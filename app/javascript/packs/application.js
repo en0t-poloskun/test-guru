@@ -24,15 +24,15 @@ document.addEventListener('turbolinks:load', function() {
   const progressBar = document.getElementById("bar")
   const timer = document.getElementById("timer")
  
-  if (sortByColumn) { sortByColumn.addEventListener('click', sortTable) }
-  if (confirmPassword) { confirmPassword.addEventListener('input', passwordMatch) }
+  if (sortByColumn) sortByColumn.addEventListener('click', sortTable)
+  if (confirmPassword) confirmPassword.addEventListener('input', passwordMatch)
   if (editLinks.length) {
     for (let link of editLinks) {
       link.addEventListener('click', formInlineLinkHandler)
     }
   }
-  if (progressBar) { new ProgressBar(progressBar).showProgress() }
-  if (timer) { new Timer(timer.dataset.timeLeft).countdown() }
+  if (progressBar) new ProgressBar(progressBar).showProgress()
+  if (timer) new Timer(timer.dataset.timeLeft).countdown()
 
   const errors = document.querySelector('.resource-errors')
 
