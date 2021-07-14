@@ -11,7 +11,7 @@ export default class Timer {
       
       if (seconds_left <= 0) {
         clearInterval(timer)
-        window.location.href = window.location.href + "/result"
+        document.querySelector('form').submit()
       } 
       else {
         minutes = Math.trunc(minutes)
@@ -25,5 +25,4 @@ export default class Timer {
       --seconds_left
     }, 1000)
   } 
-
 }

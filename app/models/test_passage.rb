@@ -38,6 +38,10 @@ class TestPassage < ApplicationRecord
     test.timer * 60 - (Time.current - created_at)
   end
 
+  def time_is_over?
+    time_left <= 0
+  end
+
   private
 
   def before_validation_set_first_question
