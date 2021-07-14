@@ -28,3 +28,6 @@ Metrics/AbcSize:
     - db/migrate/20210627122234_add_devise_to_users.rb
     - app/controllers/gists_controller.rb
     - app/controllers/admins/badges_controller.rb
+
+Style/AsciiComments:
+  Enabled: false
