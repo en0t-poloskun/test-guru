@@ -39,6 +39,8 @@ class TestPassage < ApplicationRecord
   end
 
   def time_is_over?
+    return unless test.timer
+
     time_left <= 0
   end
 

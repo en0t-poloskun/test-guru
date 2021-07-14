@@ -6,7 +6,7 @@
     <td><%= test.level %></td>
     <td><%= test.category.name %></td>
     <td><%= test.questions.size %></td>
-    <td><%= test.timer %></td>
+    <td><%= test.timer ? test.timer : 'no timer' %></td>
     <td><%= link_to 'Show', test_path(test) %></td>
     <td>
         <%= link_to 'Edit', 

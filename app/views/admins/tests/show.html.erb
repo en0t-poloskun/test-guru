@@ -12,7 +12,7 @@
 
 <p>
   <strong>Timer:</strong>
-  <%= @test.timer %> min
+  <%= @test.timer ? "#{@test.timer} min" : 'no timer' %>
 </p>
 
 <p>
