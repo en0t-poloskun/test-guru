@@ -10,15 +10,9 @@ class TestPassage < ApplicationRecord
   before_validation :before_validation_set_first_question, on: :create
   before_validation :before_validation_set_next_question, on: :update
 
-  scope :passed, -> { select(&:passed?) }
+  scope :passed, -> { select { |i| i.completed? and i.passed? } }
 
   def completed?
-    finished? or time_is_over?
-  end
-
-  # метод нужен для того, чтобы определить, какие тесты завершились не в результате того, что время вышло
-  # например, он используется в методе passed?, чтобы тест не считался успешно пройденным, если время вышло
-  def finished?
     current_question.nil?
   end
 
@@ -37,7 +31,7 @@ class TestPassage < ApplicationRecord
   end
 
   def passed?
-    result >= 85 and finished?
+    result >= 85
   end
 
   def time_left
