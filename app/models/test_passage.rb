@@ -11,7 +11,7 @@ class TestPassage < ApplicationRecord
   before_validation :before_validation_set_next_question, on: :update
 
   def self.passed
-    select { |i| i.completed? and i.passed? }
+    select { |i| i.completed? && i.passed? }
   end
 
   def completed?
