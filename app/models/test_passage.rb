@@ -41,9 +41,7 @@ class TestPassage < ApplicationRecord
   end
 
   def time_is_over?
-    return unless test.timer
-
-    time_left <= 0
+    !test.timer.nil? && time_left <= 0
   end
 
   private
@@ -53,7 +51,7 @@ class TestPassage < ApplicationRecord
   end
 
   def before_validation_set_next_question
-    self.current_question = next_question
+    self.current_question = time_is_over? ? nil : next_question
   end
 
   def correct_answer?(answer_ids)
