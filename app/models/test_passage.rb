@@ -10,7 +10,9 @@ class TestPassage < ApplicationRecord
   before_validation :before_validation_set_first_question, on: :create
   before_validation :before_validation_set_next_question, on: :update
 
-  scope :passed, -> { select { |i| i.completed? and i.passed? } }
+  def self.passed
+    select { |i| i.completed? && i.passed? }
+  end
 
   def completed?
     current_question.nil?
@@ -34,6 +36,14 @@ class TestPassage < ApplicationRecord
     result >= 85
   end
 
+  def time_left
+    test.timer * 60 - (Time.current - created_at)
+  end
+
+  def time_is_over?
+    !test.timer.nil? && time_left <= 0
+  end
+
   private
 
   def before_validation_set_first_question
@@ -41,7 +51,7 @@ class TestPassage < ApplicationRecord
   end
 
   def before_validation_set_next_question
-    self.current_question = next_question
+    self.current_question = time_is_over? ? nil : next_question
   end
 
   def correct_answer?(answer_ids)

@@ -10,6 +10,8 @@
   <%= @test.category.name %>
 </p>
 
+<%= "Timer: #{@test.timer} min" if @test.timer %>
+
 <p>
   <%= link_to 'New question', new_test_question_path(@test) %>
 </p>

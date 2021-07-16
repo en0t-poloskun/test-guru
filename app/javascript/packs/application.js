@@ -11,6 +11,7 @@ import SortingTable from 'utilities/sorting_table'
 import PasswordMatch from 'utilities/password_match'
 import FormInline from 'utilities/form_inline'
 import ProgressBar from 'utilities/progress_bar'
+import Timer from 'utilities/timer'
 
 Rails.start()
 Turbolinks.start()
@@ -21,15 +22,17 @@ document.addEventListener('turbolinks:load', function() {
   const confirmPassword = document.getElementById("confirmPassword")
   const editLinks = document.querySelectorAll('.form-inline-link')
   const progressBar = document.getElementById("bar")
+  const timer = document.getElementById("timer")
  
-  if (sortByColumn) { sortByColumn.addEventListener('click', sortTable) }
-  if (confirmPassword) { confirmPassword.addEventListener('input', passwordMatch) }
+  if (sortByColumn) sortByColumn.addEventListener('click', sortTable)
+  if (confirmPassword) confirmPassword.addEventListener('input', passwordMatch)
   if (editLinks.length) {
     for (let link of editLinks) {
       link.addEventListener('click', formInlineLinkHandler)
     }
   }
-  if (progressBar) { new ProgressBar(progressBar).showProgress() }
+  if (progressBar) new ProgressBar(progressBar).showProgress()
+  if (timer) new Timer(timer.dataset.timeLeft).countdown()
 
   const errors = document.querySelector('.resource-errors')
 
